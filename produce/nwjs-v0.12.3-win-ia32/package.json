@@ -1,0 +1,25 @@
+{
+    "name": "node_webkit_app_name",
+    "main": "/resource/index.html",
+    "single-instance": true,
+    "nodejs": true,
+    "node-remote": "*",
+    "chromium-args": "--allow-running-insecure-content --ignore-certificate-errors --disable-web-security --enable-file-cookies",
+    "window": {
+        "show": true,
+        "resizable": true,
+        "toolbar": false,
+        "frame": true,
+        "position": "center",
+        "fullscreen": false,
+        "icon": "/icons/logo.png",
+        "title": "",
+        "width": 1280,
+        "height": 720,
+        "min_width": 1280,
+        "min_height": 720
+    },
+    "webkit": {
+        "plugin": true
+    }
+}
