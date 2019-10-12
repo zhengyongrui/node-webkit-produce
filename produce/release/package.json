@@ -1,6 +1,6 @@
 {
     "name": "node_webkit_app_name",
-    "main": "/resource/index.html",
+    "main": "resource/index.html",
     "single-instance": true,
     "nodejs": true,
     "node-remote": "*",

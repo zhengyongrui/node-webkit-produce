@@ -37,6 +37,9 @@
           "webkit": {
               "plugin": "是否加载flash等外部浏览器插件，默认为true"
           }
+          "custom": {
+              "tray": "自定义是否要显示托盘，代码:nodeWebkitExt.js的buildTray"
+          }
       }
   </code>
   <h2>chromium-args参考属性</h2>

@@ -6,10 +6,19 @@
   <meta name="format-detection" content="telephone=no" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   <title>node-webkit-app</title>
+  <script type="text/javascript" src="nodeWebkitExt.js"></script>
 </head>
 
 <body>
   node-webkit-app
 </body>
+
+<script type="text/javascript">
+  try {
+    window.requireNode = window.require;
+    nodeWebkitExt.buildTray();
+  } catch (e) {
+  }
+</script>
 
 </html>
