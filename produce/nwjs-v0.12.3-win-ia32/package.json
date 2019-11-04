@@ -1,6 +1,7 @@
 {
     "name": "node_webkit_app_name",
-    "main": "/resource/index.html",
+    "version": "1.0.0",
+    "main": "resource/index.html",
     "single-instance": true,
     "nodejs": true,
     "node-remote": "*",
@@ -22,7 +23,10 @@
     "webkit": {
         "plugin": true
     },
+    "manifestUrl": "https://ip:port/node-webkit/update/package.json",
     "custom": {
-        "tray": true
+        "tray": true,
+        "winDownloadUrl": "https://ip:port/node-webkit/update/win32/setup.exe",
+        "macDownloadUrl": "https://ip:port/node-webkit/update/mac/setup.exe"
     }
 }
