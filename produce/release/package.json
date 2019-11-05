@@ -26,6 +26,7 @@
     "manifestUrl": "https://ip:port/node-webkit/update/package.json",
     "custom": {
         "directUrl": "",
+        "maximize": false,
         "tray": ["showWindow", "delCache", "showDebug", "closeWindow"],
         "winDownloadUrl": "https://ip:port/node-webkit/update/win32/setup.exe",
         "macDownloadUrl": "https://ip:port/node-webkit/update/mac/setup.exe"
