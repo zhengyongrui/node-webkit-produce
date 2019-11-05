@@ -35,8 +35,11 @@
   * min_height: 最小高度
 * webkit:
   * plugin: 是否加载flash等外部浏览器插件，默认为true
-* custom: {
+* custom:
+  * directUrl: 主页跳转指定的URL链接
   * tray: 自定义托盘类型，目前支持["showWindow", "delCache", "showDebug", "closeWindow"]；代码:nodeWebkitExt.js的buildTray
+  * winDownloadUrl: windows版本安装包下载地址
+  * macDownloadUrl: mac版本安装包下载地址
 
 #### chromium-args参考属性
 
