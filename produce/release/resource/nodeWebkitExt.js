@@ -130,5 +130,12 @@ var nodeWebkitExt = {
 				}
 			})
 		}, 0);
+	},
+	// 初始化主页
+	initMainPage: function() {
+		var directUrl = pkg && pkg.custom && pkg.custom.directUrl;
+		if (directUrl) {
+			window.location.href = directUrl;
+		}
 	}
 }
