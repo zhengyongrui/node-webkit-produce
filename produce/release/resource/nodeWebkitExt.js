@@ -2,11 +2,18 @@ var pkg = require('../package.json');
 var gui = require('nw.gui');
 var win = gui.Window.get();
 
+const TRAY_TYPE = {
+	SHOW_WINDOW: 'showWindow',
+	DEL_CACHE: 'delCache',
+	SHOW_DEBUG: 'showDebug',
+	CLOSE_WINDOW: 'closeWindow'
+}
+
 var nodeWebkitExt = {
 	buildTray: function () {
 		try {
-			var trayEnabled = pkg && pkg.custom && pkg.custom.tray;
-			if (!trayEnabled) {
+			var traySetting = pkg && pkg.custom && pkg.custom.tray;
+			if (!traySetting) {
 				return
 			}
 			var tray = new gui.Tray({
@@ -18,39 +25,47 @@ var nodeWebkitExt = {
 				win.show();
 			});
 			var menu = new gui.Menu();
-			menu.append(new gui.MenuItem({
-				type: 'normal',
-				label: '显示窗口',
-				click: function () {
-					win.show();
-					win.emit('show');
-				}
-			}));
-			menu.append(new gui.MenuItem({
-				type: 'normal',
-				label: '清除缓存',
-				click: function () {
-					gui.App.clearCache();
-					win.reloadIgnoringCache();
-				}
-			}));
-			menu.append(new gui.MenuItem({
-				type: 'normal',
-				label: '调试菜单',
-				click: function () {
-					win.showDevTools()
-				}
-			}));
-			menu.append(new gui.MenuItem({
-				type: 'separator'
-			}));
-			menu.append(new gui.MenuItem({
-				type: 'normal',
-				label: '关闭程序',
-				click: function () {
-					gui.App.closeAllWindows();
-				}
-			}));
+			if (traySetting.indexOf(TRAY_TYPE.SHOW_WINDOW) > -1) {
+				menu.append(new gui.MenuItem({
+					type: 'normal',
+					label: '显示窗口',
+					click: function () {
+						win.show();
+						win.emit('show');
+					}
+				}));
+			}
+			if (traySetting.indexOf(TRAY_TYPE.DEL_CACHE) > -1) {
+				menu.append(new gui.MenuItem({
+					type: 'normal',
+					label: '清除缓存',
+					click: function () {
+						gui.App.clearCache();
+						win.reloadIgnoringCache();
+					}
+				}));
+			}
+			if (traySetting.indexOf(TRAY_TYPE.SHOW_DEBUG) > -1) {
+				menu.append(new gui.MenuItem({
+					type: 'normal',
+					label: '调试菜单',
+					click: function () {
+						win.showDevTools()
+					}
+				}));
+			}
+			if (traySetting.indexOf(TRAY_TYPE.CLOSE_WINDOW) > -1) {
+				menu.append(new gui.MenuItem({
+					type: 'separator'
+				}));
+				menu.append(new gui.MenuItem({
+					type: 'normal',
+					label: '关闭程序',
+					click: function () {
+						gui.App.closeAllWindows();
+					}
+				}));
+			}
 			tray.menu = menu;
 		} catch (e) {
 			// 在普通Chrome调试，出现异常就忽略这段代码

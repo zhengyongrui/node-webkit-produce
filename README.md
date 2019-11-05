@@ -41,7 +41,7 @@
         "plugin": "是否加载flash等外部浏览器插件，默认为true"
     },
     "custom": {
-        "tray": "自定义是否要显示托盘，代码:nodeWebkitExt.js的buildTray"
+        "tray": "自定义托盘类型，目前支持['showWindow', 'delCache', 'showDebug', 'closeWindow']；代码:nodeWebkitExt.js的buildTray"
     }
 }
 ```
