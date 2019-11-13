@@ -17,10 +17,16 @@ var nodeWebkitExt = {
 		if (maximize) {
 			win.maximize();
 		}
+		// 通过参数跳转链接
+		if (gui.App.argv && typeof gui.App.argv != 'undefined' && gui.App.argv.length > 0) {
+			window.location.href = gui.App.argv[0];
+			return
+		}
 		// 指定主页链接
 		var directUrl = this.getCustomParam('directUrl');
 		if (directUrl) {
 			window.location.href = directUrl;
+			return
 		}
 	},
 	// 构建系统托盘
