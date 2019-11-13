@@ -10,9 +10,30 @@ const TRAY_TYPE = {
 }
 
 var nodeWebkitExt = {
+	// 初始化主页
+	initMainPage: function () {
+		// 窗口最大化
+		var maximize = this.getCustomParam('maximize');
+		if (maximize) {
+			win.maximize();
+		}
+		// 通过参数跳转链接
+		if (gui.App.argv && typeof gui.App.argv != 'undefined' && gui.App.argv.length > 0) {
+			window.location.href = gui.App.argv[0];
+			return
+		}
+		// 指定主页链接
+		var directUrl = this.getCustomParam('directUrl');
+		if (directUrl) {
+			window.location.href = directUrl;
+			return
+		}
+	},
+	// 构建系统托盘
 	buildTray: function () {
 		try {
-			var traySetting = pkg && pkg.custom && pkg.custom.tray;
+			debugger
+			var traySetting = this.getCustomParam("tray");
 			if (!traySetting) {
 				return
 			}
@@ -71,6 +92,7 @@ var nodeWebkitExt = {
 			// 在普通Chrome调试，出现异常就忽略这段代码
 		}
 	},
+	// 自动更新检查
 	autoUpdateCheck: function autoUpdateCheck(manualUpdateCheckCallBack) {
 		setTimeout(function () {
 			var updater = require('node-webkit-updater');
@@ -131,11 +153,12 @@ var nodeWebkitExt = {
 			})
 		}, 0);
 	},
-	// 初始化主页
-	initMainPage: function() {
-		var directUrl = pkg && pkg.custom && pkg.custom.directUrl;
-		if (directUrl) {
-			window.location.href = directUrl;
+	// 获取定制参数
+	getCustomParam: function (param) {
+		var result = '';
+		if (pkg && pkg.custom) {
+			result = pkg.custom[param];
 		}
+		return result;
 	}
 }
